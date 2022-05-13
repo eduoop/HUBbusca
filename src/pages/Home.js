@@ -4,7 +4,9 @@ import styles from './Home.module.css'
 import Loader from "../layouts/Loader"
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+
+import {MdOutlinePersonOutline} from 'react-icons/md'
+import {FiMapPin} from 'react-icons/fi'
 
 export default function Home() {
 
@@ -57,9 +59,9 @@ export default function Home() {
                 {user && 
                     <main className={styles.main_container}>
                         <img src={user.avatar_url} onClick={toRepos}/>
-                        <p>{user.name}</p>
-                        <p>{user.login}</p>
-                        <p>{user.location}</p>
+                        {user.name && <h1>{user.name}</h1>}
+                        {user.login && <h2> <MdOutlinePersonOutline/> {user.login}</h2>}
+                        {user.location && <h2> <FiMapPin/> {user.location}</h2>}
                     </main>
                 }
             </div>
