@@ -1,0 +1,11 @@
+.container {
+    
+}
+
+.main {
+    background: #F1F2F3;
+    border-radius: 0.4rem;
+    padding: 1.5rem 0rem;
+    box-shadow: 2px 8px 11px rgba(0, 0, 0, 0.2);
+    width: auto;
+}
