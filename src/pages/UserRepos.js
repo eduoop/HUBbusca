@@ -21,9 +21,11 @@ const User = () => {
       user = location.state.user    
     }
 
+    const url = `${user.repos_url}?per_page=100`
+
     useEffect(() => {
       setRemoveLoading(false)
-        axios.get(user.repos_url)
+        axios.get(url)
         .then((res) => {
             console.log(res.data)
             setRepos(res.data)
@@ -64,12 +66,11 @@ const User = () => {
         <div className={styles.repos_container}>
           { repos && repos.map((repo) => (
           <a className={styles.repos} href={`https://github.com/${user.login}/${repo.name}`} target='_blank'>
-            <ul>
-                <li key={repo.id}>{repo.name}</li>
-            </ul>
+                <h1 key={repo.id}>{repo.name}</h1>
             {repo.description && <h2>{repo.description}</h2>}
             {repo.language ? <p>{repo.language}</p> : <p>Vazio</p>}
             {repo.created_at && <span>{repo.created_at}</span>}
+            {repo.created_at && <span>{repo.updated_at}</span>}
           </a>
         )) }
         </div>

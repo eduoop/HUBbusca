@@ -117,15 +117,14 @@
     width: 40%;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
 }
 
-.repos li {
+.repos h1 {
     color: #eee;
     text-align: center;
     font-size: 1.5rem;
     font-weight: 500;
-    text-decoration: none;
-    list-style: none;
 }
 
 .repos p {

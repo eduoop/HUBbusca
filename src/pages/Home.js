@@ -16,6 +16,8 @@ export default function Home() {
     const [removeLoading, setRemoveLoading] = useState(true)
     const navigate = useNavigate()
 
+    const usersR = []
+
 
     const submit = (e) => {
         e.preventDefault();
@@ -24,10 +26,11 @@ export default function Home() {
         axios.get(`https://api.github.com/users/${username}`)
         .then(async (res) => {
             await setUser(res.data)
+            userR: usersR.push(res.data.login)
             if(res.data.name) {
                 localStorage.setItem(`Usuario: ${res.data.name}`, res.data.name)
             }
-            
+            console.log(usersR)
         })
         .catch((err) => {
             console.log(err)
