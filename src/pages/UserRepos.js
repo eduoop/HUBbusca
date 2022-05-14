@@ -68,7 +68,7 @@ const User = () => {
           <a className={styles.repos} href={`https://github.com/${user.login}/${repo.name}`} target='_blank'>
                 <h1 key={repo.id}>{repo.name}</h1>
             {repo.description && <h2>{repo.description}</h2>}
-            {repo.language ? <p>{repo.language}</p> : <p>Vazio</p>}
+            {repo.language && <p>{repo.language}</p>}
             {repo.created_at && <span>{repo.created_at}</span>}
             {repo.created_at && <span>{repo.updated_at}</span>}
           </a>

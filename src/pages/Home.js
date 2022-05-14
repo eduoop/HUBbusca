@@ -25,6 +25,9 @@ export default function Home() {
         axios.get(`https://api.github.com/users/${username}`)
         .then(async (res) => {
             await setUser(res.data)
+            if(recentUsers.name === res.data.name) {
+                console.log('ja existe')
+            }
             setRecentUsers(current => ([...current, res.data]))
             if(res.data.name) {
                 localStorage.setItem(`Usuario: ${res.data.name}`, res.data.name)
@@ -69,8 +72,8 @@ export default function Home() {
                     }
                 </div>
             </div>
+                <h1>Buscados recentemente:</h1>
                 <div className={styles.recent_users}>
-                    <h1>Buscados recentemente:</h1>
                             { recentUsers.map((user) => (
                                 <div className={styles.infos}>
                                     <img onClick={toRepos} src={user.avatar_url} />
