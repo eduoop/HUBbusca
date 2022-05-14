@@ -5,7 +5,7 @@
   align-items: center;
 }
 
-.general_container h1 {
+.general_container_title {
   color: white;
   margin-top: 1em;
 }
@@ -135,13 +135,13 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    flex-direction: column;
     gap: 1rem;
   }
 
-  .recent_users h1 {
+  .recent_searched {
     color: #6b7280;
     text-align: center;
+    margin-top: 1em;
     font-size: 2em;
   }
 

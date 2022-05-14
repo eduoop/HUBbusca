@@ -25,9 +25,6 @@ export default function Home() {
         axios.get(`https://api.github.com/users/${username}`)
         .then(async (res) => {
             await setUser(res.data)
-            if(recentUsers.name === res.data.name) {
-                console.log('ja existe')
-            }
             setRecentUsers(current => ([...current, res.data]))
             if(res.data.name) {
                 localStorage.setItem(`Usuario: ${res.data.name}`, res.data.name)
@@ -47,7 +44,7 @@ export default function Home() {
 
     return (
         <div className={styles.general_container}>
-            <h1>HUBbusca</h1>
+            <h1 className={styles.general_container_title}>HUBbusca</h1>
             <div className={styles.main}>
                 <div className={styles.app}>
                     <form>
@@ -72,7 +69,7 @@ export default function Home() {
                     }
                 </div>
             </div>
-                <h1>Buscados recentemente:</h1>
+                <h1 className={styles.recent_searched}>Buscados recentemente:</h1>
                 <div className={styles.recent_users}>
                             { recentUsers.map((user) => (
                                 <div className={styles.infos}>
