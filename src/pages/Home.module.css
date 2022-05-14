@@ -1,20 +1,33 @@
+.general_container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+}
+
+.general_container h1 {
+  color: white;
+  margin-top: 1em;
+}
+
 .main {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     background: #364253;
     color: #dadce7;
-    height: 100vh;
     display: grid;
     grid-template-columns: 300px;
     grid-template-rows: auto;
     justify-content: center;
     align-content: center;
+    gap: 2em;
   }
 
   .app {
+    margin-top: 12vh;
     background: #F1F2F3;
     border-radius: 0.4rem;
-    padding: 1.5rem 0rem;
     box-shadow: 2px 8px 11px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem 0rem;
   }
 
   form {
@@ -114,5 +127,73 @@
   .main_container img{
     width: 50px;
     border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .recent_users {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .recent_users h1 {
+    color: #6b7280;
+    text-align: center;
+    font-size: 2em;
+  }
+
+  .infos {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #F1F2F3;
+    border-radius: 0.4rem;
+    box-shadow: 2px 8px 11px rgba(0, 0, 0, 0.2)
+  }
+
+  .infos img {
+    width: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .infos h1 {
+    color: white;
+    padding: .4em .4em;
+    font-weight: 500;
+    font-size: 1.1rem;
+    text-align: center;
+    background: linear-gradient(to right, #4091dd, #28b4d2);
+    border-radius: 5rem;
+    letter-spacing: 1px;
+    margin-bottom: .1em;
+    margin-top: .2em;
+    line-height: 10px;
+  }
+
+  .infos h2 {
+    color: #3E93DC;
+  padding: .1em .4em;
+  font-weight: 500;
+  font-size: 1.1rem;
+  text-align: center;
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+  .close_icon {
+    position: absolute;
+    left: 57px;
+    top: 7px;
+    font-size: 2.5em;
+    color: #dc3e58e0;
     cursor: pointer;
   }
