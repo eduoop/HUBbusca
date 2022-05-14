@@ -146,7 +146,7 @@
 
 
 @media screen and (max-width: 600px) {
-    .repos li {
+    .repos h1 {
         font-size: 1em;
     }
 }

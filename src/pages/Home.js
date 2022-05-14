@@ -26,7 +26,7 @@ export default function Home() {
         axios.get(`https://api.github.com/users/${username}`)
         .then(async (res) => {
             await setUser(res.data)
-            userR: usersR.push(res.data.login)
+            usersR.push(res.data.login)
             if(res.data.name) {
                 localStorage.setItem(`Usuario: ${res.data.name}`, res.data.name)
             }
