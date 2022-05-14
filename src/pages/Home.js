@@ -75,8 +75,8 @@ export default function Home() {
                                 <div className={styles.infos}>
                                     <img onClick={toRepos} src={user.avatar_url} />
                                     { user.name && <h1> {user.name}</h1> }
-                                    <h2> <MdOutlinePersonOutline/> {user.login}</h2>
-                                    <h2> <FiMapPin/> {user.location}</h2>
+                                    { user.login && <h2> <MdOutlinePersonOutline/> {user.login}</h2> }
+                                    { user.location && <h2> <FiMapPin/> {user.location}</h2> }
                                 </div>
                             )) }
                 </div>
