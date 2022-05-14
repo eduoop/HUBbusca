@@ -4,6 +4,7 @@ import React from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import styles from './UserRepos.module.css'
+import Loader from "../layouts/Loader"
 
 import {AiOutlineCloseCircle} from 'react-icons/ai'
 import {MdOutlinePersonOutline} from 'react-icons/md'
@@ -12,6 +13,7 @@ import {FiMapPin} from 'react-icons/fi'
 const User = () => {
 
     const [repos, setRepos] = useState([])
+    const [removeLoading, setRemoveLoading] = useState(true)
 
     const location = useLocation()
     let user = {}
@@ -20,13 +22,16 @@ const User = () => {
     }
 
     useEffect(() => {
+      setRemoveLoading(false)
         axios.get(user.repos_url)
         .then((res) => {
             console.log(res.data)
             setRepos(res.data)
+            setRemoveLoading(true)
         })
         .catch((err) => {
             console.log(err)
+            setRemoveLoading(true)
         })
     }, [])
 
@@ -54,6 +59,7 @@ const User = () => {
 
       <section className={styles.section_container}>
         <h2>Repositórios: ({user.public_repos})</h2>
+        {!removeLoading && <Loader/>}
 
         <div className={styles.repos_container}>
           { repos && repos.map((repo) => (
