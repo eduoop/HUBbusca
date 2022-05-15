@@ -8,13 +8,17 @@ import { useNavigate } from 'react-router-dom';
 
 import {MdOutlinePersonOutline} from 'react-icons/md'
 import {FiMapPin} from 'react-icons/fi'
+import {TiHeartFullOutline} from 'react-icons/ti'
+import {FiAlertTriangle} from 'react-icons/fi'
 
 export default function Home() {
 
     const [username, setUserName] = useState('')
     const [user, setUser] = useState({})
     const [recentUsers, setRecentUsers] = useState([])
+    const [makeWith, setMakeWith] = useState(true)
     const navigate = useNavigate()
+    const [message, setMessage] = useState('')
 
     useEffect(() => {
     }, [])
@@ -22,15 +26,21 @@ export default function Home() {
     const submit = (e) => {
         e.preventDefault();
 
+        if(username === '') {
+            setMessage('Preencha o campo')
+            return false
+        }
+
         axios.get(`https://api.github.com/users/${username}`)
         .then(async (res) => {
             await setUser(res.data)
             await setRecentUsers(current => ([...current, res.data]))
             await localStorage.setItem("recentUsers", JSON.stringify(recentUsers))
-
+            setMakeWith(false)
+            setMessage('')
         })
         .catch((err) => {
-            console.log(err)
+            setMessage('Usuário não encontrado')
         })
     }
 
@@ -61,6 +71,7 @@ export default function Home() {
                         name="searchUser"/>
 
                         <button onClick={submit}>Pesquisar usuário</button>
+                        {message && <h3> {<FiAlertTriangle/>} {message}</h3>}
                     </form>
 
                     {user && 
@@ -84,6 +95,7 @@ export default function Home() {
                                 </div>
                             ))}
                 </div>
+                {makeWith && <p>Feito com o {<TiHeartFullOutline/>} para a Clicksoft</p>}
         </div>
-    )
+        )
 }
