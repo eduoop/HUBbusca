@@ -27,7 +27,6 @@ const User = () => {
       setRemoveLoading(false)
         axios.get(url)
         .then((res) => {
-            console.log(res.data)
             setRepos(res.data)
             setRemoveLoading(true)
         })

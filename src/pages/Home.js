@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import styles from './Home.module.css'
-import Loader from "../layouts/Loader"
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -15,30 +14,36 @@ export default function Home() {
     const [username, setUserName] = useState('')
     const [user, setUser] = useState({})
     const [recentUsers, setRecentUsers] = useState([])
-    const [removeLoading, setRemoveLoading] = useState(true)
     const navigate = useNavigate()
+
+    useEffect(() => {
+    }, [])
 
     const submit = (e) => {
         e.preventDefault();
-        setRemoveLoading(false)
 
         axios.get(`https://api.github.com/users/${username}`)
         .then(async (res) => {
             await setUser(res.data)
-            setRecentUsers(current => ([...current, res.data]))
-            if(res.data.name) {
-                localStorage.setItem(`Usuario: ${res.data.name}`, res.data.name)
-            }
+            await setRecentUsers(current => ([...current, res.data]))
+            await localStorage.setItem("recentUsers", JSON.stringify(recentUsers))
+
         })
         .catch((err) => {
             console.log(err)
         })
-        setRemoveLoading(true)
-        console.log(user)
     }
 
     const toRepos = () => {
         navigate('/user', {state: {user: user}})
+    }
+
+    const filterUsers = (userId) => {
+        const filteredUsers = recentUsers.filter(function (el) {
+            return el.id === userId
+        })
+
+        navigate('/user', {state: {user: filteredUsers[0]}})
     }
 
 
@@ -56,7 +61,6 @@ export default function Home() {
                         name="searchUser"/>
 
                         <button onClick={submit}>Pesquisar usuário</button>
-                        {!removeLoading && <Loader/>}
                     </form>
 
                     {user && 
@@ -71,14 +75,14 @@ export default function Home() {
             </div>
                 <h1 className={styles.recent_searched}>Buscados recentemente:</h1>
                 <div className={styles.recent_users}>
-                            { recentUsers.map((user) => (
+                            { recentUsers && recentUsers.map((user) => (
                                 <div className={styles.infos}>
-                                    <img onClick={toRepos} src={user.avatar_url} />
+                                    <img onClick={() => filterUsers(user.id)} src={user.avatar_url} />
                                     { user.name && <h1> {user.name}</h1> }
                                     { user.login && <h2> <MdOutlinePersonOutline/> {user.login}</h2> }
                                     { user.location && <h2> <FiMapPin/> {user.location}</h2> }
                                 </div>
-                            )) }
+                            ))}
                 </div>
         </div>
     )
