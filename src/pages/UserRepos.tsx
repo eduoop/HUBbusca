@@ -32,13 +32,11 @@ const User = () => {
     axios
       .get(url)
       .then((res) => {
-        console.log(res.data);
 
         setRepos(res.data);
         setRemoveLoading(true);
       })
       .catch((err) => {
-        console.log(err);
         setRemoveLoading(true);
       });
   }, []);

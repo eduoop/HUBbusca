@@ -52,11 +52,8 @@ export default function Home() {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
 
-  useEffect(() => {}, []);
-
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("submit");
 
     if (username === "") {
       setMessage("Preencha o campo");
@@ -76,8 +73,6 @@ export default function Home() {
         }
       })
       .catch((err) => {
-        console.log(err);
-
         setMessage("Usuário não encontrado");
       });
   };
